@@ -46,10 +46,9 @@
             </Grid>
         </Border>
 
-        <ScrollViewer Grid.Row="1"
-					  HorizontalScrollBarVisibility="Disabled"
-					  VerticalScrollBarVisibility="Auto">
-        </ScrollViewer>
+        <Grid>
+            <Button Content="安装 Visual C++ 运行库" Click="InstallVCButtonBase_OnClick"/>
+        </Grid>
 
         <Grid Grid.Row="2"
 			  Background="{DynamicResource AccentBrushKey}">
