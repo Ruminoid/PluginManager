@@ -56,8 +56,18 @@ namespace Ruminoid.PluginManager
             Dashboard.Config dashboardConfig = ConfigHelper<Dashboard.Config>.OpenConfig();
             mainWindow.DataSource = $"{dashboardConfig.UpdateServer}{dashboardConfig.UpdateChannel}/plugins.json";
 
+            // Create Downloader
+
             Downloader pluginsDataDownloader = new Downloader();
-            ProgressWindow progressWindow = ProgressWindow.CreateAndShowDialog(pluginsDataDownloader);
+            ProgressWindow.CreateAndShowDialog(pluginsDataDownloader);
+
+            // Set UI Style
+
+            Current.Dispatcher?.Invoke(() => ThemeService.Current.ChangeTheme(Theme.Dark));
+            Current.Dispatcher?.Invoke(() => ThemeService.Current.ChangeAccent(Accent.Blue));
+
+            // Start Download
+
             Task<byte[]> downloadTask = pluginsDataDownloader.DownloadByteArray(mainWindow.DataSource, 1);
             downloadTask.Wait();
             if (!downloadTask.IsCompleted)
@@ -70,6 +80,8 @@ namespace Ruminoid.PluginManager
                     MessageBoxResult.OK);
                 Current.Shutdown(1);
             }
+
+            // Parse Plugin Source
 
             try
             {
@@ -86,9 +98,6 @@ namespace Ruminoid.PluginManager
                     MessageBoxResult.OK);
                 Current.Shutdown(1);
             }
-
-            Current.Dispatcher?.Invoke(() => ThemeService.Current.ChangeTheme(Theme.Dark));
-            Current.Dispatcher?.Invoke(() => ThemeService.Current.ChangeAccent(Accent.Blue));
 
             MainWindow.Show();
 
