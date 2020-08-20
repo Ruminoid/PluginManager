@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using Microsoft.WindowsAPICodePack.Dialogs;
 using Newtonsoft.Json;
 
 namespace Ruminoid.PluginManager.Models
@@ -43,6 +46,22 @@ namespace Ruminoid.PluginManager.Models
             set
             {
                 _scaned = value;
+                OnPropertyChanged();
+            }
+        }
+
+        #endregion
+
+        #region Display Context
+
+        private PluginPlatform _selectedPlatform;
+
+        public PluginPlatform SelectedPlatform
+        {
+            get => _selectedPlatform;
+            set
+            {
+                _selectedPlatform = value;
                 OnPropertyChanged();
             }
         }
@@ -108,6 +127,47 @@ namespace Ruminoid.PluginManager.Models
 
         #endregion
 
+        #region Scan Utilities
+
+        public void ChoosePluginsFolder()
+        {
+            CommonOpenFileDialog dialog = new CommonOpenFileDialog()
+            {
+                Title = "选择文件夹",
+                IsFolderPicker = true,
+                DefaultDirectory = Environment.CurrentDirectory,
+                EnsurePathExists = true,
+                Multiselect = false
+            };
+
+            if (dialog.ShowDialog() != CommonFileDialogResult.Ok) return;
+
+            ActualPath = dialog.FileName;
+        }
+
+        public void Scan()
+        {
+            if (ActualPath is null || ActualPath == string.Empty)
+            {
+                MessageBox.Show(
+                    "请先选择管理路径。",
+                    "错误",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error,
+                    MessageBoxResult.OK);
+                return;
+            }
+
+            IEnumerable<string> files = Directory.EnumerateFiles(actualPath);
+
+            foreach (string file in files)
+            {
+                
+            }
+        }
+
+        #endregion
+
         #region Property Changed
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -162,6 +222,25 @@ namespace Ruminoid.PluginManager.Models
         private string name = "（未知文件）";
 
         public string Name => name;
+
+        [JsonProperty]
+        private uint hash;
+
+        public uint Hash => hash;
+
+        #endregion
+
+        #region Methods
+
+        public void Install()
+        {
+
+        }
+
+        public void Uninstall()
+        {
+
+        }
 
         #endregion
     }
