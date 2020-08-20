@@ -127,7 +127,11 @@
       <Name>Ruminoid.Logos</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>12.0.3</Version>
+    </PackageReference>
+  </ItemGroup>
   <ItemGroup>
     <Page Include="Styles\Generic.xaml">
       <SubType>Designer</SubType>
