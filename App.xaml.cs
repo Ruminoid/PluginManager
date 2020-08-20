@@ -85,7 +85,7 @@ namespace Ruminoid.PluginManager
 
             try
             {
-                PluginSource.CurrentWebSource =
+                PluginSource.Current =
                     JsonConvert.DeserializeObject<PluginSource>(Encoding.UTF8.GetString(downloadTask.Result));
             }
             catch (Exception e)

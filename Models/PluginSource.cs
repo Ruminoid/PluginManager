@@ -10,9 +10,7 @@ namespace Ruminoid.PluginManager.Models
     {
         #region Current
 
-        public static PluginSource CurrentWebSource { get; set; }
-
-        public static PluginSource CurrentLocalSource { get; set; }
+        public static PluginSource Current { get; internal set; }
 
         #endregion
     }
