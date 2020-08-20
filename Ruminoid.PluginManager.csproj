@@ -134,6 +134,9 @@
     <PackageReference Include="Ruminoid.Libraries">
       <Version>0.2.12</Version>
     </PackageReference>
+    <PackageReference Include="WindowsAPICodePack-Shell">
+      <Version>1.1.1</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <Page Include="Styles\Generic.xaml">
