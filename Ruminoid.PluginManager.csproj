@@ -59,6 +59,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Models\PluginSource.cs" />
     <Compile Include="Windows\MainWindow.DataContext.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
