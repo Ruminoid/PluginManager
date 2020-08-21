@@ -54,7 +54,7 @@ namespace Ruminoid.PluginManager
             // Get Update Source
 
             Dashboard.Config dashboardConfig = ConfigHelper<Dashboard.Config>.OpenConfig();
-            mainWindow.DataSource = $"{dashboardConfig.UpdateServer}{dashboardConfig.UpdateChannel}/plugins.json";
+            mainWindow.DataSource = $"{dashboardConfig.UpdateServer}{dashboardConfig.UpdateChannel}";
             mainWindow.OnPropertyChanged(nameof(mainWindow.DisplayDataSource));
 
             // Create Downloader
@@ -72,7 +72,7 @@ namespace Ruminoid.PluginManager
 
             // Start Download
 
-            Task<byte[]> downloadTask = pluginsDataDownloader.DownloadByteArray(mainWindow.DataSource, 1);
+            Task<byte[]> downloadTask = pluginsDataDownloader.DownloadByteArray($"{mainWindow.DataSource}/plugins.json", 1);
 
             downloadTask.Wait();
 
