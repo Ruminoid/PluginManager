@@ -25,6 +25,8 @@ namespace Ruminoid.PluginManager.Windows
         public MainWindow()
         {
             InitializeComponent();
+
+            Closed += (sender, args) => Application.Current.Shutdown(0);
         }
 
         #region Event Processors
