@@ -20,12 +20,10 @@ namespace Ruminoid.PluginManager.Windows
         public string DataSource
         {
             get => _dataSource;
-            set
-            {
-                _dataSource = value;
-                OnPropertyChanged();
-            }
+            set => _dataSource = value;
         }
+
+        public string DisplayDataSource => $"当前更新通道：{_dataSource}";
 
         #endregion
 
