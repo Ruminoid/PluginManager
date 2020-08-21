@@ -36,7 +36,16 @@ namespace Ruminoid.PluginManager.Windows
 
         private void ChoosePluginsFolderButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
-            if (PluginSource.Current.SelectedPlatform != null) PluginSource.Current.SelectedPlatform.ChoosePluginsFolder();
+            if (PluginSource.Current.SelectedPlatform != null)
+            {
+                PluginSource.Current.SelectedPlatform.ChoosePluginsFolder();
+                PluginSource.Current.SelectedPlatform.Scan();
+            }
+        }
+
+        private void ScanButtonBase_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (PluginSource.Current.SelectedPlatform != null) PluginSource.Current.SelectedPlatform.Scan();
         }
     }
 }

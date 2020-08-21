@@ -59,15 +59,30 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0">
-                    <Grid Margin="0,6">
-                        <StackPanel Margin="36,24" Orientation="Horizontal"
+                    <StackPanel Margin="36,30">
+                        <StackPanel Margin="0,0,0,12" Orientation="Horizontal"
                                 HorizontalAlignment="Left" VerticalAlignment="Top">
                             <TextBlock Text="平台：" Margin="4,0" VerticalAlignment="Center"/>
                             <ComboBox ItemsSource="{Binding Platforms}"
                                       SelectedItem="{Binding SelectedPlatform}"
-                                      DisplayMemberPath="Name"/>
+                                      DisplayMemberPath="Name"
+                                      Name="PlatformComboBox"/>
                         </StackPanel>
-                    </Grid>
+                        <TextBlock Text="选择一个插件平台以开始。">
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding SelectedIndex, ElementName=PlatformComboBox}" Value="-1">
+                                            <DataTrigger.Setters>
+                                                <Setter Property="Visibility" Value="Visible"/>
+                                            </DataTrigger.Setters>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
+                    </StackPanel>
                 </Grid>
                 <Grid Grid.Column="1">
                     <StackPanel Margin="36,24">
@@ -83,7 +98,15 @@
                                     Click="ChoosePluginsFolderButtonBase_OnClick"/>
                         </Grid>
                         <TextBlock Margin="0,6" Text="请参考如下实例文件夹："/>
-                        <TextBlock Margin="0,6" Text="{Binding SelectedPlatform.SuggestPath}"/>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" VerticalAlignment="Center" Text="{Binding SelectedPlatform.SuggestPath}" />
+                            <Button Margin="6,0" Grid.Column="1" Content="重新扫描"
+                                    Click="ScanButtonBase_OnClick"/>
+                        </Grid>
                     </StackPanel>
                 </Grid>
             </Grid>
