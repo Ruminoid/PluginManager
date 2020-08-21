@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -106,6 +106,7 @@ namespace Ruminoid.PluginManager
                 Current.Shutdown(1);
             }
 
+            mainWindow.RootView.DataContext = PluginSource.Current;
             MainWindow.Show();
 
         }
