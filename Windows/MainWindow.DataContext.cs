@@ -37,8 +37,5 @@ namespace Ruminoid.PluginManager.Windows
         }
 
         #endregion
-
-        private void InstallVCButtonBase_OnClick(object sender, RoutedEventArgs e) =>
-            Process.Start(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Libraries/VC_redist.x64.exe"));
     }
 }

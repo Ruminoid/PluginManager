@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +12,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Ruminoid.PluginManager.Models;
+using Path = System.IO.Path;
 
 namespace Ruminoid.PluginManager.Windows
 {
@@ -22,6 +25,18 @@ namespace Ruminoid.PluginManager.Windows
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        #region Event Processors
+
+        private void InstallVCButtonBase_OnClick(object sender, RoutedEventArgs e) =>
+            Process.Start(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Libraries/VC_redist.x64.exe"));
+
+        #endregion
+
+        private void ChoosePluginsFolderButtonBase_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (PluginSource.Current.SelectedPlatform != null) PluginSource.Current.SelectedPlatform.ChoosePluginsFolder();
         }
     }
 }

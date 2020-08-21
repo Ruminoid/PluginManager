@@ -79,7 +79,8 @@
                             </Grid.ColumnDefinitions>
                             <TextBlock Grid.Column="0" VerticalAlignment="Center" Text="文件夹: " />
                             <TextBlock Grid.Column="1" VerticalAlignment="Center" Text="{Binding SelectedPlatform.ActualPath}" />
-                            <Button Margin="6,0" Grid.Column="2" Content="…"/>
+                            <Button Margin="6,0" Grid.Column="2" Content="…"
+                                    Click="ChoosePluginsFolderButtonBase_OnClick"/>
                         </Grid>
                         <TextBlock Margin="0,6" Text="请参考如下实例文件夹："/>
                         <TextBlock Margin="0,6" Text="{Binding SelectedPlatform.SuggestPath}"/>
