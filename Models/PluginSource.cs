@@ -196,6 +196,11 @@ namespace Ruminoid.PluginManager.Models
         public string Name => name;
 
         [JsonProperty]
+        private string description = "（未知插件）";
+
+        public string Description => description;
+
+        [JsonProperty]
         private Collection<PluginFile> files = new Collection<PluginFile>();
 
         public Collection<PluginFile> Files => files;
@@ -249,6 +254,10 @@ namespace Ruminoid.PluginManager.Models
         private string _pluginName = "（未知插件）";
 
         public string PluginName => _pluginName;
+
+        private string _pluginDescription = "";
+
+        public string PluginDescription => _pluginDescription;
 
         [JsonProperty]
         private uint hash;
