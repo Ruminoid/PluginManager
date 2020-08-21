@@ -55,6 +55,7 @@ namespace Ruminoid.PluginManager
 
             Dashboard.Config dashboardConfig = ConfigHelper<Dashboard.Config>.OpenConfig();
             mainWindow.DataSource = $"{dashboardConfig.UpdateServer}{dashboardConfig.UpdateChannel}/plugins.json";
+            mainWindow.OnPropertyChanged(nameof(mainWindow.DisplayDataSource));
 
             // Create Downloader
 
