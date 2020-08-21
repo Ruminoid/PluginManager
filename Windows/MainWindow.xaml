@@ -59,16 +59,38 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0">
-                    <StackPanel Margin="36,30">
-                        <StackPanel Margin="0,0,0,12" Orientation="Horizontal"
-                                HorizontalAlignment="Left" VerticalAlignment="Top">
-                            <TextBlock Text="平台：" Margin="4,0" VerticalAlignment="Center"/>
+                    <StackPanel Margin="12,30,12,0">
+                        <TextBlock Text="Ruminoid World" FontSize="20" Margin="12,0,0,12"/>
+                        <Grid Margin="8,0,0,6" VerticalAlignment="Top">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="平台：" Margin="4,0" VerticalAlignment="Center"
+                                       Grid.Column="0"/>
                             <ComboBox ItemsSource="{Binding Platforms}"
                                       SelectedItem="{Binding SelectedPlatform}"
-                                      DisplayMemberPath="Name"
-                                      Name="PlatformComboBox"/>
-                        </StackPanel>
-                        <TextBlock Text="选择一个插件平台以开始。">
+                                      Name="PlatformComboBox"
+                                      Grid.Column="1" HorizontalAlignment="Left"
+                                      Width="500">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid Height="40">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition/>
+                                            </Grid.ColumnDefinitions>
+                                            <Image Source="../Assets/HeavyWork.Colored.Transparent.png"
+                                                   Width="40" Grid.Column="0"/>
+                                            <TextBlock Text="{Binding Name}" Grid.Column="1"
+                                                       FontSize="18" VerticalAlignment="Center"
+                                                       Margin="12,0"/>
+                                        </Grid>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                        </Grid>
+                        <TextBlock Margin="12,6" Text="选择一个插件平台以开始。">
                             <TextBlock.Style>
                                 <Style TargetType="TextBlock">
                                     <Setter Property="Visibility" Value="Collapsed"/>
@@ -85,8 +107,9 @@
                     </StackPanel>
                 </Grid>
                 <Grid Grid.Column="1">
-                    <StackPanel Margin="36,24">
-                        <Grid>
+                    <StackPanel Margin="12,30,12,0">
+                        <TextBlock Text="本地" FontSize="20" Margin="8,0,0,12"/>
+                        <Grid Margin="8,0,0,6">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition />
@@ -97,8 +120,8 @@
                             <Button Margin="6,0" Grid.Column="2" Content="…"
                                     Click="ChoosePluginsFolderButtonBase_OnClick"/>
                         </Grid>
-                        <TextBlock Margin="0,6" Text="请参考如下实例文件夹："/>
-                        <Grid>
+                        <TextBlock Margin="8,0,0,6" Text="请参考如下实例文件夹："/>
+                        <Grid Margin="8,0,0,6">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition />
                                 <ColumnDefinition Width="Auto" />
