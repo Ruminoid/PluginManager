@@ -25,7 +25,7 @@ namespace Ruminoid.PluginManager.Models
         #region Data Context
 
         [JsonProperty]
-        private Collection<PluginPlatform> platforms = new Collection<PluginPlatform>();
+        private Collection<PluginPlatform> platforms;
 
         public Collection<PluginPlatform> Platforms => platforms;
 
@@ -36,21 +36,21 @@ namespace Ruminoid.PluginManager.Models
 
         #endregion
 
-        #region Scan Utilities
+        //#region Scan Utilities
 
-        private bool _scaned;
+        //private bool _scaned;
 
-        public bool Scaned
-        {
-            get => _scaned;
-            set
-            {
-                _scaned = value;
-                OnPropertyChanged();
-            }
-        }
+        //public bool Scaned
+        //{
+        //    get => _scaned;
+        //    set
+        //    {
+        //        _scaned = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
 
-        #endregion
+        //#endregion
 
         #region Display Context
 
@@ -181,7 +181,7 @@ namespace Ruminoid.PluginManager.Models
     }
 
     [JsonObject(MemberSerialization.OptIn)]
-    public sealed class Plugin
+    public sealed class Plugin : INotifyPropertyChanged
     {
         #region Data Context
 
@@ -199,6 +199,29 @@ namespace Ruminoid.PluginManager.Models
         private Collection<PluginFile> files = new Collection<PluginFile>();
 
         public Collection<PluginFile> Files => files;
+
+        private PluginFile _selectedFile;
+
+        public PluginFile SelectedFile
+        {
+            get => _selectedFile;
+            set
+            {
+                _selectedFile = value;
+                OnPropertyChanged();
+            }
+        }
+
+        #endregion
+
+        #region Property Changed
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
 
         #endregion
     }
@@ -222,6 +245,10 @@ namespace Ruminoid.PluginManager.Models
         private string name = "（未知文件）";
 
         public string Name => name;
+
+        private string _pluginName = "（未知插件）";
+
+        public string PluginName => _pluginName;
 
         [JsonProperty]
         private uint hash;
