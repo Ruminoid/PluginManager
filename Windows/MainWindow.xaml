@@ -132,6 +132,7 @@
                                     Source="../Assets/HeavyWork.Colored.Transparent.png"/>
                                 <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="0,0,0,8">
                                     <TextBlock Text="{Binding Name}" FontSize="24" Margin="0,0,0,6"/>
+                                    <TextBlock Text="{Binding Description}" TextWrapping="Wrap" Margin="0,0,0,6"/>
                                     <Grid>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition/>
