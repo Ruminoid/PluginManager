@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -59,7 +59,10 @@ namespace Ruminoid.PluginManager
             // Create Downloader
 
             Downloader pluginsDataDownloader = new Downloader();
-            ProgressWindow.CreateAndShowDialog(pluginsDataDownloader);
+            ProgressWindow progressWindow = ProgressWindow.CreateAndShowDialog(pluginsDataDownloader);
+
+            pluginsDataDownloader.Progress.Title = "正在准备";
+            pluginsDataDownloader.Progress.Description = "正在获取插件列表";
 
             // Set UI Style
 
@@ -69,8 +72,12 @@ namespace Ruminoid.PluginManager
             // Start Download
 
             Task<byte[]> downloadTask = pluginsDataDownloader.DownloadByteArray(mainWindow.DataSource, 1);
+
             downloadTask.Wait();
-            if (!downloadTask.IsCompleted)
+
+            progressWindow.Hide();
+
+            if (!downloadTask.IsCompleted || downloadTask.IsFaulted)
             {
                 MessageBox.Show(
                     "获取插件源时出现错误。请检查更新通道设置和网络连接。",
