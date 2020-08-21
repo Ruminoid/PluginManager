@@ -120,7 +120,7 @@
                             <Button Margin="6,0" Grid.Column="2" Content="…"
                                     Click="ChoosePluginsFolderButtonBase_OnClick"/>
                         </Grid>
-                        <TextBlock Margin="8,0,0,6" Text="请参考如下实例文件夹："/>
+                        <TextBlock Margin="8,0,0,6" Text="请参考如下示例文件夹："/>
                         <Grid Margin="8,0,0,6">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition />
