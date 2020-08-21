@@ -124,10 +124,26 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <Grid>
-                                <StackPanel>
-                                    <TextBlock Text="{Binding Name}"/>
-                                    <ComboBox ItemsSource="{Binding Files}"
-                                              SelectedIndex="0" SelectedItem="{Binding SelectedFile}"/>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <Image Grid.Column="0" Width="100" Margin="6"
+                                    Source="../Assets/HeavyWork.Colored.Transparent.png"/>
+                                <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="0,0,0,8">
+                                    <TextBlock Text="{Binding Name}" FontSize="24" Margin="0,0,0,6"/>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <ComboBox ItemsSource="{Binding Files}"
+                                                  SelectedIndex="0" SelectedItem="{Binding SelectedFile}"
+                                                  DisplayMemberPath="Name"
+                                                  VerticalAlignment="Center" Grid.Column="0"/>
+                                        <Button Grid.Column="1" Content="安装" Margin="6"
+                                                Width="120"/>
+                                    </Grid>
                                 </StackPanel>
                             </Grid>
                         </DataTemplate>
