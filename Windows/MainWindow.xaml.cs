@@ -49,5 +49,19 @@ namespace Ruminoid.PluginManager.Windows
         {
             if (PluginSource.Current.SelectedPlatform != null) PluginSource.Current.SelectedPlatform.Scan();
         }
+
+        private void InstallButtonBase_OnClick(object sender, RoutedEventArgs e)
+        {
+            Button button = sender as Button;
+            PluginFile pluginFile = button?.DataContext as PluginFile;
+            pluginFile?.Install();
+        }
+
+        private void UninstallButtonBase_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = sender as Button;
+            PluginFile pluginFile = button?.DataContext as PluginFile;
+            pluginFile?.Uninstall();
+        }
     }
 }
