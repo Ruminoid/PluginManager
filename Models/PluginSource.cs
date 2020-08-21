@@ -433,6 +433,14 @@ namespace Ruminoid.PluginManager.Models
 
         public void Uninstall()
         {
+            MessageBoxResult result = MessageBox.Show(
+                "确认卸载此插件吗?",
+                "确认",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Information,
+                MessageBoxResult.Yes);
+            if (result != MessageBoxResult.Yes) return;
+
             if (Path is null || Path == string.Empty || !File.Exists(path)) return;
             try
             {
